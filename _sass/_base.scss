@@ -1,0 +1,126 @@
+.SocialInnovation--Infographic {
+    background-color: $base-background;
+
+    overflow: hidden;
+
+    padding-top: 30px;
+    padding-bottom: 50px;
+
+
+    #carousel {
+        .flex-direction-nav .flex-prev {
+            left: -40px !important;
+        }
+
+        .flex-direction-nav .flex-next {
+            right: -40px !important;
+        }
+    }
+
+    .wrapper {
+        width: $content-width;
+        margin: 0 auto;
+    }
+
+    .flexslider {
+        margin: 0 0 48px;
+    }
+
+    #carousel {
+        background: none;
+        border: 0px;
+
+        .slides {
+            li {
+                margin-right: 8px;
+                margin-left: 8px;
+                background-color: white;
+
+                img {
+                    max-width: 100%;
+                }
+
+                &.flex-active-slide {
+                    position: relative;
+                    &:before {
+                        content: "";
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        height: 3px;
+                        background-color: #0e6dd4;
+                    }
+                }
+            }
+        }
+    }
+
+    #slider {
+
+        background: none;
+        width: 760px;
+        margin: 0 auto;
+
+        border: 0px;
+
+
+        .flex-viewport {
+            overflow: visible !important;
+        }
+
+        .slides > li {
+            
+            .inner-slide {
+                padding-left: 48px;
+                padding-right: 48px;
+                padding-top: 21px;
+            }
+            
+            text-align: center;
+    
+            img {
+                max-width: 100%;
+                display: block;
+                margin: 0 auto;
+                width: auto;
+            }
+
+            &.flex-active-slide {
+                .inner-slide {
+                    padding-left: 45px;
+                    padding-right: 45px;
+                    padding-top: 0px;
+                }
+
+                .bg {
+                    min-height: 415px;
+                }
+                
+            }
+
+            .bg {
+
+                min-height: 372px;
+                padding-left: 43px;
+                padding-right: 43px;
+
+                padding-top: 21px;
+                padding-bottom: 21px;
+
+                -webkit-box-shadow: 0px 0px 14px 0px rgba(50, 50, 50, 0.75);
+                -moz-box-shadow:    0px 0px 14px 0px rgba(50, 50, 50, 0.75);
+                box-shadow:         0px 0px 14px 0px rgba(50, 50, 50, 0.75);
+                background-color: white;
+            }
+
+        }
+    }
+
+    #slider-meta-wrapper {
+        width: 670px;
+        margin: 0 auto;
+        padding-top: 11px;
+    }
+
+}

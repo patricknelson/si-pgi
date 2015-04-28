@@ -1,0 +1,45 @@
+---
+layout: default
+---
+
+<div class="SocialInnovation--Infographic">
+
+  <div class="wrapper">
+    <div id="carousel" class="flexslider">
+      <ul class="slides">
+        {% for slide in site.slides %}
+        <li>
+          {% include preview.html %}
+        </li>
+        {% endfor %}
+      </ul>
+    </div> <!-- /#carousel -->
+
+
+    <div id="slider" class="flexslider">
+
+      <ul class="slides">
+        {% for slide in site.slides %}
+          <li>
+            {% include slide.html %}
+          </li>
+        {% endfor %}
+      </ul>
+
+    </div> <!-- /#slider -->
+
+    <div id="slider-meta-wrapper">
+      <span id="slide-counter">
+        <span class="current">1</span>
+        /
+        <span class="total">{{site.slides.size}}</span>
+      </span>
+
+      <span class="options-button">
+        ...
+      </span>
+    </div>
+
+  </div>
+
+</div>
