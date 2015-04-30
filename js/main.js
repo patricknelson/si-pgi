@@ -49,6 +49,8 @@ jQuery(function($) {
 
       $('.current', '#slide-counter').html(current + 1);
 
+      $('#SI--Download-Button').attr('download', src).attr('href', src);
+
     }
 
   });
@@ -85,10 +87,6 @@ jQuery(function($) {
 
   });
 
-  $('#SI--Download-Button').click(function() {
-
-  });
-  $('#SI--Share-Button').click(function() {
-
-  });
+  
+//  $('#SI--Share-Button').click(function() {});
 });
