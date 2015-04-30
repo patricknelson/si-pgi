@@ -1,5 +1,6 @@
 .SocialInnovation--Infographic {
     background-color: $base-background;
+    position: relative;
 
     overflow: hidden;
 
@@ -18,12 +19,46 @@
     }
 
     .wrapper {
-        width: $content-width;
+        
         margin: 0 auto;
+
+        @media (min-width: $large-min) {
+            width: $content-width;
+        }
     }
 
     .flexslider {
         margin: 0 0 48px;
+        
+        a.flex-next,
+        a.flex-prev {
+            &:before {
+                content: none;
+            }
+            background-position: center center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            
+            opacity: 1 !important; 
+
+            &:focus, &:active {
+                outline: 0;
+            }
+
+            z-index:1;
+        }
+
+        a.flex-next {
+            background-image: url('../images/right-arrow.png');
+            right: -5px !important;
+            text-indent: 5500px;
+        }
+
+        a.flex-prev {
+            background-image: url('../images/left-arrow.png');
+            left: -5px !important;
+            text-indent: -4500px;
+        }
     }
 
     #carousel {
@@ -59,7 +94,9 @@
     #slider {
 
         background: none;
-        width: 760px;
+        @media (min-width: $large-min) {
+            width: 760px;
+        }
         margin: 0 auto;
 
         border: 0px;
@@ -70,7 +107,11 @@
         }
 
         .slides > li {
-            
+            background: transparent;
+            -webkit-backface-visibility: visible;
+            backface-visibility: visible;
+
+
             .inner-slide {
                 padding-left: 48px;
                 padding-right: 48px;
@@ -94,23 +135,39 @@
                 }
 
                 .bg {
-                    min-height: 415px;
+                    @media (min-width: $large-min) {
+                        min-height: 415px;
+                    }
+                    -webkit-transition: all .5s; /* Safari */
+                    transition: all .5s;
                 }
                 
+            }
+            .inner-slide {
+                position: relative;
+                -webkit-transition: padding .5s; /* Safari */
+                    transition: padding .5s;
             }
 
             .bg {
 
-                min-height: 372px;
+                position: relative;
+                z-index: 11;
+                @media (min-width: $large-min) {
+                    min-height: 372px;
+                }
                 padding-left: 43px;
                 padding-right: 43px;
 
                 padding-top: 21px;
                 padding-bottom: 21px;
 
-                -webkit-box-shadow: 0px 0px 14px 0px rgba(50, 50, 50, 0.75);
-                -moz-box-shadow:    0px 0px 14px 0px rgba(50, 50, 50, 0.75);
-                box-shadow:         0px 0px 14px 0px rgba(50, 50, 50, 0.75);
+                -webkit-transition: all .5s; /* Safari */
+                transition: all .5s;
+
+                -webkit-box-shadow: 0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+                -moz-box-shadow:    0px 0px 8px 0px rgba(50, 50, 50, 0.75);
+                box-shadow:         0px 0px 8px 0px rgba(50, 50, 50, 0.75);
                 background-color: white;
             }
 
@@ -118,9 +175,35 @@
     }
 
     #slider-meta-wrapper {
-        width: 670px;
+        padding-left: 45px;
+        padding-right: 45px;
+        @media (min-width: $large-min) {
+            width: 670px;
+            padding-left: 0;
+            padding-right: 0;
+        }
         margin: 0 auto;
         padding-top: 11px;
+
+        color: rgb(191, 184, 175);
+
+        font-family: sans-serif;
+
+        .options-button {
+            float: right;
+        }
+    }
+
+    #SI--Download-Button,
+    #SI--Share-Button {
+        &:hover {
+            path {fill: rgb(0, 100, 210); }
+        }
+    }
+
+    .svg {
+        width: 18px;
+        height: 18px;
     }
 
 }

@@ -11,6 +11,12 @@ $base-background: #f2f2f2;
 // Width of the content area
 $content-width:    1080px;
 
+$mobile: 480px;
+$tablet-min: 481px;
+$tablet-max: 767px;
+$desktop-min: 768px;
+$desktop-max: 1079px;
+$large-min: 1080px;
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import

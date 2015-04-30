@@ -5,15 +5,17 @@ layout: default
 <div class="SocialInnovation--Infographic">
 
   <div class="wrapper">
-    <div id="carousel" class="flexslider">
-      <ul class="slides">
-        {% for slide in site.slides %}
-        <li>
-          {% include preview.html %}
-        </li>
-        {% endfor %}
-      </ul>
-    </div> <!-- /#carousel -->
+    <div class="Carousel--Outer">
+      <div id="carousel" class="flexslider">
+        <ul class="slides">
+          {% for slide in site.slides %}
+          <li>
+            {% include preview.html %}
+          </li>
+          {% endfor %}
+        </ul>
+      </div> <!-- /#carousel -->
+    </div>
 
 
     <div id="slider" class="flexslider">
@@ -30,13 +32,12 @@ layout: default
 
     <div id="slider-meta-wrapper">
       <span id="slide-counter">
-        <span class="current">1</span>
-        /
-        <span class="total">{{site.slides.size}}</span>
+        <span class="current">1</span>/<span class="total">{{site.slides.size}}</span>
       </span>
 
       <span class="options-button">
-        ...
+        <a href="javascript:void(0);" id="SI--Download-Button"><img src="images/download-icon.svg" class="svg" width="18" height="18"></a>&nbsp;
+        <a href="javascript:void(0);" id="SI--Share-Button"><img src="images/share-icon.svg" class="svg" width="18" height="18"></a>
       </span>
     </div>
 
