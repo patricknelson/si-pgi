@@ -29,6 +29,15 @@
 
     .flexslider {
         margin: 0 0 48px;
+
+        .flex-direction-nav a {
+            width: 25px;
+            height: 25px;
+            @media (min-width: $large-min) {
+                width: 40px;
+                height: 40px;
+            }
+        }
         
         a.flex-next,
         a.flex-prev {
@@ -50,13 +59,17 @@
 
         a.flex-next {
             background-image: url('../images/right-arrow.png');
-            right: -5px !important;
+            @media (min-width: $large-min) {
+                right: 0px !important;
+            }
             text-indent: 5500px;
         }
 
         a.flex-prev {
             background-image: url('../images/left-arrow.png');
-            left: -5px !important;
+            @media (min-width: $large-min) {
+                left: 0px !important;
+            }
             text-indent: -4500px;
         }
     }
@@ -67,6 +80,7 @@
 
         .slides {
             li {
+                
                 margin-right: 8px;
                 margin-left: 8px;
                 background-color: white;
@@ -111,7 +125,9 @@
             -webkit-backface-visibility: visible;
             backface-visibility: visible;
 
-
+            @media (min-width: $large-min) {
+                min-height: 460px;
+            }   
             .inner-slide {
                 padding-left: 48px;
                 padding-right: 48px;
@@ -125,6 +141,14 @@
                 display: block;
                 margin: 0 auto;
                 width: auto;
+            }
+
+            iframe {
+                align: center;
+                margin: 0 auto;
+                overflow:hidden;
+                width: 550px;
+                height: 400px;
             }
 
             &.flex-active-slide {

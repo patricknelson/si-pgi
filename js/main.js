@@ -37,19 +37,29 @@ jQuery(function($) {
     after: function(slider) {
       $('a.flex-next,a.flex-prev', slider).show();
       var current = slider.currentSlide;
+      var current_1 = current + 1;
+      
+      var the_slide = $('li.flex-active-slide'); //[current + 1];
 
-      var the_slide = $('li', slider)[current + 1];
       var img = $('img', the_slide);
-      var src = img.attr('src');
+      if (img) {
+        var src = img.attr('src');
 
-      if (src && src.match(/[.]gif/i)) {
-        
-        img.attr('src', src);
+        if (src && src.match(/[.]gif/i)) {
+          
+          img.attr('src', src);
+        }
+
+      }
+
+      var iframe = $('iframe', the_slide);
+      if (iframe) {
+        iframe.attr('src', iframe.attr('src'));
       }
 
       $('.current', '#slide-counter').html(current + 1);
 
-      $('#SI--Download-Button').attr('download', src).attr('href', src);
+//      $('#SI--Download-Button').attr('download', src).attr('href', src);
 
     }
 

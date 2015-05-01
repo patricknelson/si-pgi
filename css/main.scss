@@ -18,6 +18,11 @@ $desktop-min: 768px;
 $desktop-max: 1079px;
 $large-min: 1080px;
 
+body {
+	margin: 0;
+	padding: 0;
+}
+
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
 		"flexslider",
