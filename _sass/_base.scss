@@ -147,8 +147,12 @@
                 align: center;
                 margin: 0 auto;
                 overflow:hidden;
-                width: 550px;
-                height: 400px;
+                width: 100%;
+                height: 300px;
+                @media (min-width: $large-min) {
+                    width: 550px;
+                    height: 400px;
+                }
             }
 
             &.flex-active-slide {

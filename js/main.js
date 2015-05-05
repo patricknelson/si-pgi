@@ -39,7 +39,7 @@ jQuery(function($) {
       var current = slider.currentSlide;
       var current_1 = current + 1;
       
-      var the_slide = $('li.flex-active-slide'); //[current + 1];
+      var the_slide = $('li.flex-active-slide', slider); //[current + 1];
 
       var img = $('img', the_slide);
       if (img) {
