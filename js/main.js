@@ -6,6 +6,7 @@ jQuery(function($) {
     controlNav: false,
     slideshow: false,
     animationLoop: true,
+    clones: 3,
     start: function(slider) {
       var lis = $('li:eq(3)', slider);
       slider.cloneCount = 10;
@@ -28,6 +29,7 @@ jQuery(function($) {
     slideshow: false,
     sync: "#carousel",
     animationLoop: true,
+    clones: 2,
 
     start: function(slider) {
       var len = slider.slides.length;
@@ -68,16 +70,16 @@ jQuery(function($) {
 
   });
 
-
-  var sl = $('#carousel').ebaySlider({
-    hey: 'there',
-    thumbnails: '#slider'
-  });
-
-  sl.on('hey', function() {
-    alert('hey');
+  $('li', '#slider').click(function() {
+    var index = $('li', '#slider').not('.clone').index($(this));
+    $('#slider').flexslider(index);
   })
-   
+
+  $('li', '#carousel').click(function() {
+    var index = $('li', '#carousel').not('.clone').index($(this));
+    $('#carousel').flexslider(index);
+    $('#slider').flexslider(index);
+  })
   
 
   /*
