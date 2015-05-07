@@ -7,14 +7,24 @@
     padding-top: 30px;
     padding-bottom: 50px;
 
+    .Carousel--Outer {
+        overflow: hidden !important;
+
+        padding-bottom: 20px;
+        .flex-viewport {
+
+            overflow: visible !important;
+        }
+    }
+
 
     #carousel {
         .flex-direction-nav .flex-prev {
-            left: -40px !important;
+            left: -500px !important;
         }
 
         .flex-direction-nav .flex-next {
-            right: -40px !important;
+            right: -500px !important;
         }
     }
 
@@ -77,13 +87,23 @@
     #carousel {
         background: none;
         border: 0px;
-
+        
+        width: 160px;
+        margin: 0 auto;
+        overflow: visible;
+    
         .slides {
+            
             li {
-                
-                margin-right: 8px;
-                margin-left: 8px;
-                background-color: white;
+
+                .inner {
+                    padding-left: 8px;
+                    padding-right: 8px;
+                    .bg {
+                        background-color: white;
+                        position: relative;
+                    }
+                }
 
                 img {
                     max-width: 100%;
@@ -91,14 +111,8 @@
 
                 &.flex-active-slide {
                     position: relative;
-                    &:before {
-                        content: "";
-                        position: absolute;
-                        top: 0;
-                        left: 0;
-                        right: 0;
-                        height: 3px;
-                        background-color: #0e6dd4;
+                    .bg {
+                        border-top: 3px solid  #0e6dd4;
                     }
                 }
             }

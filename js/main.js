@@ -1,28 +1,31 @@
 jQuery(function($) {
   // The slider being synced must be initialized first
+  
   $('#carousel').flexslider({
     animation: "slide",
     controlNav: false,
     slideshow: false,
-    itemWidth: 125,
-    itemMargin: 16,
-    maxItems: 7,
-    minItems: 3,
-    asNavFor: '#slider',
     animationLoop: true,
     start: function(slider) {
       var lis = $('li:eq(3)', slider);
+      slider.cloneCount = 10;
 
       lis.click();
+    },
+    after: function(slider) {
+      // We need to make sure there are enough clones on either side here.
+    },
+    start: function(slider) {
+      // Again, make sure there are the right number of clones
     }
   });
-   
+
+
   $('#slider').flexslider({
     animation: "slide",
     controlNav: false,
     animationLoop: false,
     slideshow: false,
-    startAt: 3,
     sync: "#carousel",
     animationLoop: true,
 
@@ -65,9 +68,21 @@ jQuery(function($) {
 
   });
 
-    /*
-     * Replace all SVG images with inline SVG
-     */
+
+  var sl = $('#carousel').ebaySlider({
+    hey: 'there',
+    thumbnails: '#slider'
+  });
+
+  sl.on('hey', function() {
+    alert('hey');
+  })
+   
+  
+
+  /*
+   * Replace all SVG images with inline SVG
+   */
   $('img.svg').each(function(){
       var $img = $(this);
       var imgID = $img.attr('id');
