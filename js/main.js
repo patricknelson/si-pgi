@@ -18,6 +18,9 @@ jQuery(function($) {
     },
     start: function(slider) {
       // Again, make sure there are the right number of clones
+    },
+    before: function(slider) {
+      $('#slider').flexslider(slider.animatingTo);
     }
   });
 
@@ -68,7 +71,7 @@ jQuery(function($) {
     }
 
   });
-/*
+
 
   $('li', '#slider').click(function() {
     var $this = $(this);
@@ -81,9 +84,13 @@ jQuery(function($) {
 
     }
 
-  })
+  });
 
-  $('li', '#carousel').click(function() {
+  $('a', '.flex-direction-nav').click(function(e) {
+    e.stopPropagation();
+  });
+
+  $('li', '#carousel').click(function(e) {
     var $this = $(this);
 
     if ($this.hasClass('clone')) {
@@ -91,11 +98,9 @@ jQuery(function($) {
     } else {
       var index = $('li', '#carousel').not('.clone').index($this);
       $('#carousel').flexslider(index);
-      $('#slider').flexslider(index);
-
     }
     
-  })*/
+  })
   
 
   /*

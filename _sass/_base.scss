@@ -19,12 +19,20 @@
 
 
     #carousel {
+        .flex-direction-nav a {
+            border-top-width: 19px;
+            border-bottom-width: 19px;
+            margin-top: -39px;
+            border-color: #f2f2f2;
+            background-color: #f2f2f2;
+            border-style: solid;
+        }
         .flex-direction-nav .flex-prev {
-            left: -500px !important;
+            left: -460px !important;
         }
 
         .flex-direction-nav .flex-next {
-            right: -500px !important;
+            right: -460px !important;
         }
     }
 
