@@ -741,9 +741,6 @@
           } else {
             slideString = (reverse) ? ((slider.count - 1) - target + slider.cloneOffset) * dimension : (target + slider.cloneOffset) * dimension;
           }
-console.group(slider.attr('id'));
-console.log(slideString);
-console.groupEnd();
           slider.setProps(slideString, "", slider.vars.animationSpeed);
           if (slider.transitions) {
             if (!slider.vars.animationLoop || !slider.atEnd) {
@@ -933,14 +930,11 @@ console.groupEnd();
           	// fourth will get 2 - 1 - 3 = -2
           	// let's say there are 4. first we should get 1, second 0, 
 
-          	if ( i < (halfclones - 1)) {
-          		console.log('appending');
-          		slider.container.append(methods.uniqueID(slider.slides.eq(val).clone().addClass('clone')).attr('aria-hidden', 'true'));
+          	if ( i < halfclones) {
+          		slider.container.append(methods.uniqueID(slider.slides.eq(val).clone().addClass('clone')).attr('aria-hidden', 'true').attr('data-index', val));
           	} else {
-          		console.log('prepending');
-          		var reverseLength = slider.slides.length - (val + halfclones);
-          		console.log(slider.attr('id') + ":" + reverseLength);
-          		slider.container.prepend(methods.uniqueID(slider.slides.eq(reverseLength).clone().addClass('clone')).attr('aria-hidden', 'true'));
+          		var reverseLength = slider.slides.length - (val + halfclones) - 1;
+          		slider.container.prepend(methods.uniqueID(slider.slides.eq(reverseLength).clone().addClass('clone')).attr('aria-hidden', 'true').attr('data-index', reverseLength));
           	}
 
           } 
