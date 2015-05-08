@@ -43,10 +43,8 @@ jQuery(function($) {
 
     after: function(slider) {
       $('a.flex-next,a.flex-prev', slider).show();
-      var current = slider.currentSlide;
-      var current_1 = current + 1;
-      
-      var the_slide = $('li.flex-active-slide', slider); //[current + 1];
+      var current = slider.currentSlide,
+          the_slide = $('li.flex-active-slide', '#slider'); //[current + 1];
 
       var img = $('img', the_slide);
       if (img) {
@@ -59,7 +57,7 @@ jQuery(function($) {
 
       }
 
-      var iframe = $('iframe', the_slide);
+      var iframe = $('iframe', the_slide.context);
       if (iframe) {
         iframe.attr('src', iframe.attr('src'));
       }
