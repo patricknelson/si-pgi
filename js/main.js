@@ -6,7 +6,7 @@ jQuery(function($) {
     controlNav: false,
     slideshow: false,
     animationLoop: true,
-    clones: 3,
+    clones: 4,
     start: function(slider) {
       var lis = $('li:eq(3)', slider);
       slider.cloneCount = 10;
