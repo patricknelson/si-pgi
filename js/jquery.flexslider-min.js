@@ -733,10 +733,11 @@
             calcNext = ((slider.itemW + margin) * slider.move) * slider.animatingTo;
             slideString = (calcNext > slider.limit && slider.visible !== 1) ? slider.limit : calcNext;
           } else if (slider.currentSlide === 0 && target === slider.count - 1 && slider.vars.animationLoop && slider.direction !== "next") {
+          	console.log('not next');
             slideString = (reverse) ? (slider.count + slider.cloneOffset) * dimension : 0;
-
           } else if (slider.currentSlide === slider.last && target === 0 && slider.vars.animationLoop && slider.direction !== "prev") {
           	// was a 1
+          	//
             slideString = (reverse) ? 0 : (slider.count + 1 + slider.cloneOffset) * dimension;
           } else {
             slideString = (reverse) ? ((slider.count - 1) - target + slider.cloneOffset) * dimension : (target + slider.cloneOffset) * dimension;
@@ -790,6 +791,7 @@
         if (slider.currentSlide === 0 && slider.animatingTo === slider.last && slider.vars.animationLoop) {
           slider.setProps(dimension, "jumpEnd");
         } else if (slider.currentSlide === slider.last && slider.animatingTo === 0 && slider.vars.animationLoop) {
+        	// # HI HO THE DERIO
           slider.setProps(dimension, "jumpStart");
         }
       }
@@ -863,8 +865,12 @@
                 switch (special) {
                   case "setTotal": return (reverse) ? ((slider.count - 1) - slider.currentSlide + slider.cloneOffset) * pos : (slider.currentSlide + slider.cloneOffset) * pos;
                   case "setTouch": return (reverse) ? pos : pos;
-                  case "jumpEnd": return (reverse) ? pos : slider.count * pos;
-                  case "jumpStart": return (reverse) ? slider.count * pos : pos;
+                  case "jumpEnd":
+                  	var cnt = slider.cloneOffset + slider.count - 1;
+                  	return (reverse) ? pos : cnt * pos;
+                  case "jumpStart":
+                  	var cnt = slider.cloneOffset + slider.count + 1;
+                  	return (reverse) ? cnt * pos : pos * slider.cloneOffset;
                   default: return pos;
                 }
               }
@@ -920,20 +926,15 @@
           var cnt = slider.container;
 
           // Do first half first
-          for (var i = 0; i < slider.cloneCount; i++) {
-          	var val = (slider.cloneCount / 2) - 1 - i,
-          		halfclones = slider.cloneCount / 2;
+          for (var i = slider.cloneCount - 1; 0 <= i; i--) {
+          	var halfclones = slider.cloneOffset,
+          		modded = (i > halfclones) ? i % halfclones : i,
+          		length = halfclones - modded - 1,
+          		reverseLength = reverseLength = slider.slides.length - modded;
 
-          	// first will get 2 - 1 - 0 = 1
-          	// second will get 2 - 1 - 1 = 0
-          	// third will get 2 - 1 - 2 = -1
-          	// fourth will get 2 - 1 - 3 = -2
-          	// let's say there are 4. first we should get 1, second 0, 
-
-          	if ( i < halfclones) {
-          		slider.container.append(methods.uniqueID(slider.slides.eq(val).clone().addClass('clone')).attr('aria-hidden', 'true').attr('data-index', val));
+          	if ( i < halfclones ) {
+          		slider.container.append(methods.uniqueID(slider.slides.eq(length).clone().addClass('clone')).attr('aria-hidden', 'true').attr('data-index', length));
           	} else {
-          		var reverseLength = slider.slides.length - (val + halfclones) - 1;
           		slider.container.prepend(methods.uniqueID(slider.slides.eq(reverseLength).clone().addClass('clone')).attr('aria-hidden', 'true').attr('data-index', reverseLength));
           	}
 
