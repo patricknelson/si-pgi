@@ -1,4 +1,5 @@
 ---
 preview: slide-1.png
-full: newpg1.gif
+full: gif1/PG_Gif_01.html
+iframe: true
 ---
