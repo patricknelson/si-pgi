@@ -1,4 +1,14 @@
 .SocialInnovation--Infographic {
+
+    .fade-me-in {
+        opacity: 0;
+    }
+
+    .loader {
+        text-align: center;
+        padding-top: 20px;
+    }
+
     background-color: $base-background;
     position: relative;
 

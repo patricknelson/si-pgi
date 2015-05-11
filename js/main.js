@@ -1,6 +1,31 @@
 jQuery(function($) {
   // The slider being synced must be initialized first
   
+  function refreshActiveSlide() {
+    var img = $('.flex-active-slide img', '#slider');
+    if (img) {
+      var src = img.attr('src');
+
+      if (src && src.match(/[.]gif/i)) {
+        
+        img.attr('src', src);
+      }
+
+    }
+
+    var iframe = $('iframe', '.flex-active-slide');
+    if (iframe) {
+      iframe.attr('src', iframe.attr('src'));
+    }
+
+  }
+
+  window.setTimeout(function() {
+    $('.fade-me-out').fadeOut(400, function() {
+      $('.fade-me-in').animate({opacity: 1}, 400, 'swing', refreshActiveSlide);
+    });
+  }, 5500);
+
   $('#carousel').flexslider({
     animation: "slide",
     controlNav: false,
@@ -45,21 +70,7 @@ jQuery(function($) {
       $('a.flex-next,a.flex-prev', slider).show();
       var current = slider.currentSlide
 
-      var img = $('img', '.flex-active-slide');
-      if (img) {
-        var src = img.attr('src');
-
-        if (src && src.match(/[.]gif/i)) {
-          
-          img.attr('src', src);
-        }
-
-      }
-
-      var iframe = $('iframe', '.flex-active-slide');
-      if (iframe) {
-        iframe.attr('src', iframe.attr('src'));
-      }
+      refreshActiveSlide();
 
       $('.current', '#slide-counter').html(current + 1);
 
