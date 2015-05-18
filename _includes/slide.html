@@ -1,9 +1,13 @@
 <div class="inner-slide">
+	{% if slide.iframe %}
 	<div class="bg">
+	{% else %}
+	<div class="bg gif">
+	{% endif %}
 		{% if slide.iframe %}
 		<iframe width="550" height="400" src="{{ slide.full | prepend: '/edge/' | prepend: site.baseurl }}" frameborder="0" scrolling="no"></iframe>
 		{% else %}
-		<img src="{{ slide.full | prepend: '/images/slides/full/' |  prepend: site.baseurl }}" alt="">
+		<img src="{{ slide.full | prepend: '/images/slides/full/' |  prepend: site.baseurl }}" alt="" class="gif">
 		{% endif %}
 	</div>
 </div>

@@ -191,6 +191,10 @@
                 }
             }
 
+            .gif img {
+                width: 80%;
+            }
+
             &.flex-active-slide {
                 .inner-slide {
                     padding-left: 45px;
@@ -234,6 +238,10 @@
                 -moz-box-shadow:    0px 0px 8px 0px rgba(50, 50, 50, 0.75);
                 box-shadow:         0px 0px 8px 0px rgba(50, 50, 50, 0.75);
                 background-color: white;
+
+                &.gif {
+                    padding: 0;
+                }
             }
 
         }
