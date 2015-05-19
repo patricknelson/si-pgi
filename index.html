@@ -24,7 +24,7 @@ layout: default
 
       <ul class="slides">
         {% for slide in site.slides %}
-          <li>
+          <li id="slide-slider-{{ forloop.index }}" data-loop-index="{{forloop.index}}">
             {% include slide.html %}
           </li>
         {% endfor %}

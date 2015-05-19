@@ -14,10 +14,6 @@ jQuery(function($) {
           img = new Image();
 
       img.src = src;
-      img.onload= function(){
-        console.log('Preloaded ' + src);
-      }
-      img.onerror = function(e) {console.log(e);}
     });
 
   }
@@ -48,22 +44,24 @@ jQuery(function($) {
     var preview = $(previewClass, ctx);
     var previewContainer = $(previewContainer, ctx);
 
+    if (preview.length < 1) {
+      return refreshGif(ctx, function() { 
+        runningCrossfade = false;
+        console.log('done');
+      });
+    }
+
     var slideHeight = innerSlide.height();
 
     innerSlide.css('height', slideHeight + 'px');
-
-    console.log('doing fade out');
 
     preview.fadeOut(animationLength, function() {
       previewContainer.css('opacity', 0);
       previewContainer.show();
 
-      console.log('done fading out');
-
       refreshGif(ctx, function() {
         runningCrossfade = false;
         previewContainer.css('opacity', 1);
-        console.log('done fading out');
       });
 
     });
@@ -71,8 +69,12 @@ jQuery(function($) {
   }
 
   function refreshGif(ctx, callback) {
+    console.log('refreshGif');
     var img = $('img.gif', ctx);
-    if (img) {
+
+    callback = callback || function() {};
+
+    if (img && img[0]) {
       var src = img.attr('src');
 
       if (src && src.match(/[.]gif/i)) {
@@ -90,9 +92,26 @@ jQuery(function($) {
     }
 
     var iframe = $('iframe', ctx);
-    if (iframe) {
+    if (iframe && iframe[0]) {
       iframe.attr('src', iframe.attr('src'));
       return callback();
+    }
+
+    var video = $('video', ctx);
+    console.log(video);
+    console.log('gogo');
+    if (video) {
+      if (video.hasClass('played')) return callback(video);
+
+      video.addClass('played');
+
+      var id = video.attr('id'),
+          videoPlayer = videojs(id);
+
+      videoPlayer.play();
+
+      callback(videoPlayer);
+
     }
 
   }
@@ -182,12 +201,12 @@ jQuery(function($) {
 
   $('li', '#slider').click(function() {
     var $this = $(this);
-
     if ($this.hasClass('clone')) {
       $('#slider').flexslider(parseInt($this.attr('data-index')));
     } else {
-      var index = $('li', '#slider').not('.clone').index($this);
-      $('#slider').flexslider(index);
+      var index = $this.attr('data-loop-index');
+      console.log(index - 1);
+      $('#slider').flexslider(index - 1);
 
     }
 
@@ -242,7 +261,7 @@ jQuery(function($) {
 
   });
 
-  preloadGifs();
+//  preloadGifs();
 
   
 //  $('#SI--Share-Button').click(function() {});

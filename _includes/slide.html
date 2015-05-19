@@ -4,6 +4,18 @@
 	{% else %}
 	<div class="bg gif">
 	{% endif %}
+	{% if slide.video %}
+	<div class="videocontent">
+		<video id="{{ slide.full }}" class="video-js"
+		  preload="auto" width="auto" height="auto"
+		  poster="{{ slide.thumbnail | prepend: '/images/slides/thumbnail/' | prepend: site.baseurl }}"
+		  data-setup='{"autoplay":false, "bgcolor": "white"}'>
+			  <param name="wmode" value="transparent" />
+		 	<source src="{{ 'animation.mp4' | prepend: '/' | prepend: slide.full | prepend: '/video/full/' | prepend: site.baseurl }}" type='video/mp4' />
+		</video>
+	</div>
+	{% else %}
+	<!-- not video -->
 	{% if slide.thumbnail %}
 		<img src="{{ slide.thumbnail | prepend: '/images/slides/thumbnail/' | prepend: site.baseurl }}" alt="Thumbnail" class="preview">
 		<div class="preview-content">
@@ -11,10 +23,12 @@
 		{% if slide.iframe %}
 		<iframe width="550" height="400" src="{{ slide.full | prepend: '/edge/' | prepend: site.baseurl }}" frameborder="0" scrolling="no"></iframe>
 		{% else %}
-		<img src="{{ slide.full | prepend: '/images/slides/full/' |  prepend: site.baseurl }}" alt="" class="gif">
+		<img src="{{ slide.full | prepend: '/images/slides/full/' |  prepend: site.baseurl }}" alt="" class="gif">	
 		{% endif %}
 	{% if slide.thumbnail %}
 		</div>
+	{% endif %}
+	<!-- end not video -->
 	{% endif %}
 	</div>
 </div>

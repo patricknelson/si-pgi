@@ -1,5 +1,6 @@
 ---
 preview: slide-10.jpg
 thumbnail: slide-10.jpg
-full: slide-10.gif
+full: slide-10
+video: true
 ---
