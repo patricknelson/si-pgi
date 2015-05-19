@@ -4,10 +4,17 @@
 	{% else %}
 	<div class="bg gif">
 	{% endif %}
+	{% if slide.thumbnail %}
+		<img src="{{ slide.thumbnail | prepend: '/images/slides/thumbnail/' | prepend: site.baseurl }}" alt="Thumbnail" class="preview">
+		<div class="preview-content">
+	{% endif %}
 		{% if slide.iframe %}
 		<iframe width="550" height="400" src="{{ slide.full | prepend: '/edge/' | prepend: site.baseurl }}" frameborder="0" scrolling="no"></iframe>
 		{% else %}
 		<img src="{{ slide.full | prepend: '/images/slides/full/' |  prepend: site.baseurl }}" alt="" class="gif">
 		{% endif %}
+	{% if slide.thumbnail %}
+		</div>
+	{% endif %}
 	</div>
 </div>

@@ -1,4 +1,5 @@
 ---
-preview: slide-1.png
+preview: slide-4.jpg
+thumbnail: slide-4.jpg
 full: slide-4.gif
 ---

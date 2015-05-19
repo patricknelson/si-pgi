@@ -1,7 +1,12 @@
 .SocialInnovation--Infographic {
 
+    /*
     .fade-me-in {
         opacity: 0;
+    }*/
+
+    .fade-me-out {
+        display: none;
     }
 
     .loader {
@@ -192,7 +197,11 @@
             }
 
             .gif img {
-                width: 80%;
+                max-width: 80%;
+            }
+
+            .preview-content {
+                display: none;
             }
 
             &.flex-active-slide {
@@ -202,8 +211,21 @@
                     padding-top: 0px;
                 }
 
+                .gif img {
+                    max-width: 100%;
+                }
+
+                /*
+                .preview-content {
+                    display: block;
+                }
+
+                .preview {
+                    display: none;
+                }*/
+
                 .bg {
-                    min-height: 200px;
+                    //min-height: 200px;
                     @media (min-width: $large-min) {
                         min-height: 415px;
                     }

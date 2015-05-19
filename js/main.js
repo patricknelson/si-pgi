@@ -1,13 +1,109 @@
 jQuery(function($) {
   // The slider being synced must be initialized first
-  
-  function refreshActiveSlide() {
-    var img = $('.flex-active-slide img', '#slider');
+
+  var runningCrossfade = false;
+
+  function preloadGifs(ctx) {
+    var imgClass = 'img.gif';
+
+    var images = $(imgClass,ctx);
+
+    images.each(function() {
+      var $this = $(this),
+          src = $this.attr('src'),
+          img = new Image();
+
+      img.src = src;
+      img.onload= function(){
+        console.log('Preloaded ' + src);
+      }
+      img.onerror = function(e) {console.log(e);}
+    });
+
+  }
+
+  function resetToDefault(ctx) {
+    var previewClass = '.preview',
+        previewContainer = '.preview-content';
+
+    $(previewClass, ctx).show();
+    $(previewContainer, ctx).hide();
+  }
+
+  function crossfadePreviews(ctx) {
+    var previewClass = '.preview',
+        previewContainer = '.preview-content',
+        animationLength = 400,
+        innerClass= '.inner-slide';
+
+    if (!runningCrossfade) {
+      runningCrossfade = true;
+    } else return;
+
+    // Before we do anything we need to reset to default
+    resetToDefault(ctx);
+    ctx += ' .flex-active-slide';
+
+    var innerSlide = $(innerClass, ctx);
+    var preview = $(previewClass, ctx);
+    var previewContainer = $(previewContainer, ctx);
+
+    var slideHeight = innerSlide.height();
+
+    innerSlide.css('height', slideHeight + 'px');
+
+    console.log('doing fade out');
+
+    preview.fadeOut(animationLength, function() {
+      previewContainer.css('opacity', 0);
+      previewContainer.show();
+
+      console.log('done fading out');
+
+      refreshGif(ctx, function() {
+        runningCrossfade = false;
+        previewContainer.css('opacity', 1);
+        console.log('done fading out');
+      });
+
+    });
+    
+  }
+
+  function refreshGif(ctx, callback) {
+    var img = $('img.gif', ctx);
     if (img) {
       var src = img.attr('src');
 
       if (src && src.match(/[.]gif/i)) {
-        
+
+        img.load(callback)
+            .error(callback);
+
+        img.attr('src', src);
+
+        if (img[0].complete) img.load();
+
+        return;
+      }
+
+    }
+
+    var iframe = $('iframe', ctx);
+    if (iframe) {
+      iframe.attr('src', iframe.attr('src'));
+      return callback();
+    }
+
+  }
+  
+  function refreshActiveSlide() {
+
+    var img = $('.flex-active-slide img.gif', '#slider');
+    if (img) {
+      var src = img.attr('src');
+
+      if (src && src.match(/[.]gif/i)) {
         img.attr('src', src);
       }
 
@@ -18,13 +114,17 @@ jQuery(function($) {
       iframe.attr('src', iframe.attr('src'));
     }
 
+    window.setTimeout(function() {
+      $('.flex-active-slide .preview-content', '#slider').css('opacity', 1);
+    }, 100);
+
   }
 
-  window.setTimeout(function() {
+  /*window.setTimeout(function() {
     $('.fade-me-out').fadeOut(400, function() {
       $('.fade-me-in').animate({opacity: 1}, 400, 'swing', refreshActiveSlide);
     });
-  }, 5500);
+  }, 5500);*/
 
   $('#carousel').flexslider({
     animation: "slide",
@@ -33,16 +133,11 @@ jQuery(function($) {
     animationLoop: true,
     clones: 4,
     start: function(slider) {
-      var lis = $('li:eq(3)', slider);
-      slider.cloneCount = 10;
+    
 
-      lis.click();
     },
     after: function(slider) {
       // We need to make sure there are enough clones on either side here.
-    },
-    start: function(slider) {
-      // Again, make sure there are the right number of clones
     },
     before: function(slider) {
       $('#slider').flexslider(slider.animatingTo);
@@ -60,6 +155,10 @@ jQuery(function($) {
 
     start: function(slider) {
       var len = slider.slides.length;
+      crossfadePreviews('#slider');
+      
+//      refreshActiveSlide();
+
     },
 
     before: function(slider) {
@@ -68,9 +167,9 @@ jQuery(function($) {
 
     after: function(slider) {
       $('a.flex-next,a.flex-prev', slider).show();
-      var current = slider.currentSlide
+      var current = slider.currentSlide;
 
-      refreshActiveSlide();
+      crossfadePreviews('#slider');
 
       $('.current', '#slide-counter').html(current + 1);
 
@@ -142,6 +241,8 @@ jQuery(function($) {
       }, 'xml');
 
   });
+
+  preloadGifs();
 
   
 //  $('#SI--Share-Button').click(function() {});
