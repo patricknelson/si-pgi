@@ -189,6 +189,7 @@ jQuery(function($) {
       var current = slider.currentSlide;
 
       crossfadePreviews('#slider');
+      $('video').attr('webkit-playsinline', null);
 
       $('.current', '#slide-counter').html(current + 1);
 
@@ -259,6 +260,11 @@ jQuery(function($) {
 
       }, 'xml');
 
+  });
+
+  $('.videocontent').click(function() {
+    $id = $(this).children('.video-js').attr('id');
+    videojs($id).play();
   });
 
 //  preloadGifs();

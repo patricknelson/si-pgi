@@ -1,4 +1,9 @@
 .SocialInnovation--Infographic {
+    video::-webkit-media-controls {
+        display:none !important;
+    }
+
+    video::-webkit-media-controls-play-button
 
     .vjs-fullscreen {padding-top: 0px !important;}
     .vjs-control-bar {display: none !important;}
@@ -202,7 +207,7 @@
                 max-width: 80%;
             }
 
-            .video-js {padding-top: 49%}
+            .video-js {padding-top: 68.7%}
 
             @media (min-width: $large-min) {
                 .videocontent {
@@ -210,7 +215,7 @@
                     width: 545px;
                     margin: 0 auto;
                 }
-                .video-js {padding-top: 49%}
+                .video-js {padding-top: 68.7%}
                 .video-js {
                     margin: 0 auto;
                     text-align: center;
@@ -236,7 +241,7 @@
                         height: auto;
                         width: 100%;
                     }
-                    .video-js {padding-top: 49%}
+                    .video-js {padding-top: 68.7%}
                     .video-js {
                         //width: 670px;
                         //height: 460px;

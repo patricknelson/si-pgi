@@ -9,7 +9,7 @@
 		<video id="{{ slide.full }}" class="video-js"
 		  preload="auto" width="auto" height="auto"
 		  poster="{{ slide.thumbnail | prepend: '/images/slides/thumbnail/' | prepend: site.baseurl }}"
-		  data-setup='{"autoplay":false, "bgcolor": "white"}'>
+		  data-setup='{"autoplay":false, "bgcolor": "white"}' webkit-playsinline>
 			  <param name="wmode" value="transparent" />
 		 	<source src="{{ 'animation.mp4' | prepend: '/' | prepend: slide.full | prepend: '/video/full/' | prepend: site.baseurl }}" type='video/mp4' />
 		</video>
