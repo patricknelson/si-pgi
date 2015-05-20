@@ -47,7 +47,6 @@ jQuery(function($) {
     if (preview.length < 1) {
       return refreshGif(ctx, function() { 
         runningCrossfade = false;
-        console.log('done');
       });
     }
 
@@ -69,7 +68,6 @@ jQuery(function($) {
   }
 
   function refreshGif(ctx, callback) {
-    console.log('refreshGif');
     var img = $('img.gif', ctx);
 
     callback = callback || function() {};
@@ -98,8 +96,6 @@ jQuery(function($) {
     }
 
     var video = $('video', ctx);
-    console.log(video);
-    console.log('gogo');
     if (video) {
       if (video.hasClass('played')) return callback(video);
 
@@ -206,7 +202,6 @@ jQuery(function($) {
       $('#slider').flexslider(parseInt($this.attr('data-index')));
     } else {
       var index = $this.attr('data-loop-index');
-      console.log(index - 1);
       $('#slider').flexslider(index - 1);
 
     }

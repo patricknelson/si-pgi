@@ -1,6 +1,6 @@
 ---
 preview: slide-8.jpg
 thumbnail: slide-8.jpg
-full: slide-8
+full: Stat_08
 video: true
 ---
