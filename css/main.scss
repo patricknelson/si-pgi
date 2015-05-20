@@ -18,6 +18,25 @@ $desktop-min: 768px;
 $desktop-max: 1079px;
 $large-min: 1080px;
 
+.hidden-xs {
+	display: none;
+}
+
+@media (min-width: $desktop-min) {
+	.hidden-xs {
+		display: block;
+	}
+	.visible-xs {
+		display: none;
+	}
+}
+
+
+
+@media (min-width: $large-min) {
+            width: $content-width;
+        }
+
 body {
 	margin: 0;
 	padding: 0;

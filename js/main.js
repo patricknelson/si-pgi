@@ -96,10 +96,9 @@ jQuery(function($) {
     }
 
     var video = $('video', ctx);
+    var vidj = $('.video-js', ctx);
     if (video) {
-      if (video.hasClass('played')) return callback(video);
-
-      video.addClass('played');
+      if (vidj.hasClass('vjs-has-started')) return callback(video);
 
       var id = video.attr('id'),
           videoPlayer = videojs(id);
@@ -199,17 +198,53 @@ jQuery(function($) {
   $('li', '#slider').click(function() {
     var $this = $(this);
     if ($this.hasClass('clone')) {
-      $('#slider').flexslider(parseInt($this.attr('data-index')));
+      var index = parseInt($this.attr('data-index'))
     } else {
       var index = $this.attr('data-loop-index');
-      $('#slider').flexslider(index - 1);
-
+      index -= 1;
     }
+
+    // Try to do prev or next first
+
+    var currentSlide = $('.flex-active-slide', '#slider'),
+        activeIndex = parseInt(currentSlide.attr('data-loop-index')),
+        $slider = $('#slider');
+
+    activeIndex -= 1;
+
+    if (index == activeIndex) return;
+    if (index + 1 == activeIndex) $slider.flexslider('prev');
+    else if (index - 1 == activeIndex) $slider.flexslider('next');
+    else $slider.flexslider(index);
+
+    $('li[data-loop-index=' + index + '] .videocontent', '#slider').click();
 
   });
 
   $('a', '.flex-direction-nav').click(function(e) {
     e.stopPropagation();
+  });
+
+  $('a.flex-next', '#slider').click(function(e) {
+    // We may only want to do this on phablonets
+    var currentSlide = $('.flex-active-slide', '#slider'),
+        activeIndex = parseInt(currentSlide.attr('data-loop-index')),
+        $slider = $('#slider');    
+
+    activeIndex += 1;
+
+    $('li[data-loop-index=' + activeIndex + '] .videocontent', '#slider').click();
+  });
+
+  $('a.flex-prev', '#slider').click(function(e) {
+    // Same as above
+    var currentSlide = $('.flex-active-slide', '#slider'),
+        activeIndex = parseInt(currentSlide.attr('data-loop-index')),
+        $slider = $('#slider');
+
+    activeIndex -= 1;
+    $('li[data-loop-index=' + activeIndex + '] .videocontent', '#slider').click();
+
   });
 
   $('li', '#carousel').click(function(e) {
@@ -258,7 +293,10 @@ jQuery(function($) {
   });
 
   $('.videocontent').click(function() {
-    $id = $(this).children('.video-js').attr('id');
+    // We only want to do this if the video has not been played yet
+    $vidjs = $(this).children('.video-js');
+    if ($vidjs.hasClass('vjs-has-started')) return;
+    $id = $vidjs.attr('id');
     videojs($id).play();
   });
 

@@ -5,7 +5,10 @@
 	<div class="bg gif">
 	{% endif %}
 	{% if slide.video %}
-	<div class="videocontent">
+	<div class="visible-xs">
+		<img class="img-responsive" src="{{ 'fallback.jpg' | prepend: '/' | prepend: slide.full | prepend: '/video/full/' | prepend: site.baseurl }}" alt="">
+	</div>
+	<div class="videocontent hidden-xs">
 		<video id="{{ slide.full }}" class="video-js"
 		  preload="auto" width="auto" height="auto"
 		  poster="{{ slide.thumbnail | prepend: '/images/slides/thumbnail/' | prepend: site.baseurl }}"
