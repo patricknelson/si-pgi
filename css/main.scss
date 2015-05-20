@@ -23,11 +23,15 @@ $large-min: 1080px;
 }
 
 @media (min-width: $desktop-min) {
-	.hidden-xs {
-		display: block;
-	}
-	.visible-xs {
-		display: none;
+
+	html.video {
+		.hidden-xs {
+			display: block;
+		}
+		
+		.visible-xs {
+			display: none;
+		}
 	}
 }
 

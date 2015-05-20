@@ -100,8 +100,9 @@ jQuery(function($) {
     if (video) {
       if (vidj.hasClass('vjs-has-started')) return callback(video);
 
-      var id = video.attr('id'),
-          videoPlayer = videojs(id);
+      var id = vidj.attr('id');
+      if (!id) return callback(false);
+      var videoPlayer = videojs(id);
 
       videoPlayer.play();
 
@@ -217,7 +218,7 @@ jQuery(function($) {
     else if (index - 1 == activeIndex) $slider.flexslider('next');
     else $slider.flexslider(index);
 
-    $('li[data-loop-index=' + index + '] .videocontent', '#slider').click();
+//    $('li[data-loop-index=' + index + '] .videocontent', '#slider').delay(1000).click();
 
   });
 
@@ -226,6 +227,7 @@ jQuery(function($) {
   });
 
   $('a.flex-next', '#slider').click(function(e) {
+    return false;
     // We may only want to do this on phablonets
     var currentSlide = $('.flex-active-slide', '#slider'),
         activeIndex = parseInt(currentSlide.attr('data-loop-index')),
@@ -237,6 +239,7 @@ jQuery(function($) {
   });
 
   $('a.flex-prev', '#slider').click(function(e) {
+    return false;
     // Same as above
     var currentSlide = $('.flex-active-slide', '#slider'),
         activeIndex = parseInt(currentSlide.attr('data-loop-index')),

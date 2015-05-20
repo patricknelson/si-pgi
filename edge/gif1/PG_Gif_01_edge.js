@@ -1,7 +1,0 @@
-
-(function(compId){var _=null,y=true,n=false,e9='${Pasted2}',x3='5.0.1.386',e10='${Pasted3}',x5='rgba(0,0,0,0)',o='opacity',x1='5.0.1',g='image',x4='both',x8='rgba(255,255,255,1)',x2='5.0.0',i='none';var g7='Pasted3.svg',g6='Pasted2.svg';var im='images/',aud='media/',vid='media/',js='js/',fonts={},opts={'gAudioPreloadPreference':'auto','gVideoPreloadPreference':'auto'},resources=[],scripts=[],symbols={"stage":{v:x1,mv:x2,b:x3,stf:x4,cg:i,rI:n,cn:{dom:[{id:'Pasted2',t:g,r:['76px','104px','397px','82px','auto','auto'],o:'0',f:[x5,im+g6,'0px','0px']},{id:'Pasted3',t:g,r:['120px','217px','309px','53px','auto','auto'],o:'0',f:[x5,im+g7,'0px','0px']}],style:{'${Stage}':{isStage:true,r:['null','null','550px','400px','auto','auto'],overflow:'hidden',f:[x8]}}},tt:{d:2500,a:y,data:[["eid11",o,0,1544,"linear",e9,'0.000000','1'],["eid18",o,1544,956,"linear",e10,'0','1']]}}};AdobeEdge.registerCompositionDefn(compId,symbols,fonts,scripts,resources,opts);})("EDGE-532537994");
-(function($,Edge,compId){var Composition=Edge.Composition,Symbol=Edge.Symbol;Edge.registerEventBinding(compId,function($){
-//Edge symbol: 'stage'
-(function(symbolName){})("stage");
-//Edge symbol end:'stage'
-})})(AdobeEdge.$,AdobeEdge,"EDGE-532537994");
