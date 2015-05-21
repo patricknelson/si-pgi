@@ -12,9 +12,8 @@
 
 		<!--[if lte IE 9]>
 		<video id="{{ slide.full }}" class="video-js"
-		  preload="none" width="auto" height="auto"
-		  poster="{{ slide.thumbnail | prepend: '/images/slides/thumbnail/' | prepend: site.baseurl }}"
-		  data-setup='{"autoplay":false, "bgcolor": "white", "wmode": "transparent"}' webkit-playsinline>
+		  preload="auto" width="auto" height="auto"
+		  data-setup='{"autoplay":false}' webkit-playsinline>
 			<source src="{{ 'animation.mp4' | prepend: '/' | prepend: slide.full | prepend: '/video/full/' | prepend: site.baseurl | prepend: site.url }}" type='video/mp4' />
 			<source src="{{ 'animation.ogv' | prepend: '/' | prepend: slide.full | prepend: '/video/full/' | prepend: site.baseurl | prepend: site.url }}" type='video/ogg' />
 		 	<source src="{{ 'animation.webm' | prepend: '/' | prepend: slide.full | prepend: '/video/full/' | prepend: site.baseurl | prepend: site.url }}" type='video/webm' />

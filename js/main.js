@@ -1,6 +1,6 @@
 jQuery(function($) {
   // The slider being synced must be initialized first
-
+  var ieOld = $('html').hasClass('ie-old');
   var runningCrossfade = false;
 
   function preloadGifs(ctx) {
@@ -26,7 +26,8 @@ jQuery(function($) {
     $(previewContainer, ctx).hide();
   }
 
-  function crossfadePreviews(ctx) {
+  function crossfadePreviews(ctx, cb) {
+    var cb = cb || function() {};
     var previewClass = '.preview',
         previewContainer = '.preview-content',
         animationLength = 400,
@@ -34,7 +35,7 @@ jQuery(function($) {
 
     if (!runningCrossfade) {
       runningCrossfade = true;
-    } else return;
+    } else return cb();
 
     // Before we do anything we need to reset to default
     resetToDefault(ctx);
@@ -47,6 +48,7 @@ jQuery(function($) {
     if (preview.length < 1) {
       return refreshGif(ctx, function() { 
         runningCrossfade = false;
+        cb();
       });
     }
 
@@ -61,6 +63,7 @@ jQuery(function($) {
       refreshGif(ctx, function() {
         runningCrossfade = false;
         previewContainer.css('opacity', 1);
+        cb();
       });
 
     });
@@ -98,7 +101,7 @@ jQuery(function($) {
     var video = $('video', ctx);
     var vidj = $('.video-js', ctx);
     if (video) {
-      if (vidj.hasClass('vjs-has-started')) return callback(video);
+      if (!ieOld && vidj.hasClass('vjs-has-started')) return callback(video);
 
       var id = vidj.attr('id');
       if (!id) return callback(false);
@@ -159,6 +162,30 @@ jQuery(function($) {
     }
   });
 
+  var iePlayed = [];
+
+  function probeVideosForIe(cb) {
+    if (ieOld) {
+      $('.video-js').each(function() {
+        var $vidjs = $(this);
+        var $id = $vidjs.attr('id');
+
+        videojs($id).play();
+        
+      });
+    }
+
+    cb();
+  }
+
+  function playVideoForIE() {
+    if (ieOld) {
+      var id = $('.flex-active-slide .video-js').attr('id');
+      if (!$.inArray(id, iePlayed)) return; // no idea...
+      iePlayed.push(id);
+      videojs(id).play();
+    }
+  }
 
   $('#slider').flexslider({
     animation: "slide",
@@ -170,7 +197,10 @@ jQuery(function($) {
 
     start: function(slider) {
       var len = slider.slides.length;
-      crossfadePreviews('#slider');
+      crossfadePreviews('#slider', function() {
+        probeVideosForIe(playVideoForIE);
+      });
+
       
 //      refreshActiveSlide();
 
@@ -184,7 +214,7 @@ jQuery(function($) {
       $('a.flex-next,a.flex-prev', slider).show();
       var current = slider.currentSlide;
 
-      crossfadePreviews('#slider');
+      crossfadePreviews('#slider', playVideoForIE);
       $('video').attr('webkit-playsinline', null);
 
       $('.current', '#slide-counter').html(current + 1);
@@ -298,7 +328,7 @@ jQuery(function($) {
   $('.videocontent').click(function() {
     // We only want to do this if the video has not been played yet
     $vidjs = $(this).children('.video-js');
-    if ($vidjs.hasClass('vjs-has-started')) return;
+    if (!ieOld && $vidjs.hasClass('vjs-has-started')) return;
     $id = $vidjs.attr('id');
     videojs($id).play();
   });
