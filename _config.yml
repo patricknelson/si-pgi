@@ -10,6 +10,8 @@ url: "http://360.ingenuitydesign.com" # the base hostname & protocol for your si
 twitter_username: jekyllrb
 github_username:  jekyll
 
+exclude: ["phantomjs"]
+
 # Build settings
 markdown: kramdown
 
