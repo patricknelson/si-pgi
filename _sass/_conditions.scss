@@ -55,3 +55,9 @@
         }
     }
 }
+
+.ie-8 {
+	.fallback {
+		display: block;
+	}
+}
