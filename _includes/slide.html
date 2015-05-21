@@ -5,18 +5,17 @@
 	<div class="bg gif">
 	{% endif %}
 	{% if slide.video %}
-	<div class="visible-xs">
+	<div class="visible-xs touch-only">
 		<img class="img-responsive" src="{{ 'fallback.jpg' | prepend: '/' | prepend: slide.full | prepend: '/video/full/' | prepend: site.baseurl }}" alt="">
 	</div>
-	<div class="videocontent hidden-xs">
+	<div class="videocontent hidden-xs no-touch">
 		<video id="{{ slide.full }}" class="video-js"
-		  preload="auto" width="auto" height="auto"
+		  preload="none" width="auto" height="auto"
 		  poster="{{ slide.thumbnail | prepend: '/images/slides/thumbnail/' | prepend: site.baseurl }}"
 		  data-setup='{"autoplay":false, "bgcolor": "white", "wmode": "transparent"}' webkit-playsinline>
-			<source src="{{ 'animation.mp4' | prepend: '/' | prepend: slide.full | prepend: '/video/full/' | prepend: site.baseurl }}" type='video/mp4' />
-			<source src="{{ 'animation.ogv' | prepend: '/' | prepend: slide.full | prepend: '/video/full/' | prepend: site.baseurl }}" type='video/ogg' />
-		 	<source src="{{ 'animation.webm' | prepend: '/' | prepend: slide.full | prepend: '/video/full/' | prepend: site.baseurl }}" type='video/webm' />
-		 	<param name="wmode" value="transparent" />
+			<source src="{{ 'animation.mp4' | prepend: '/' | prepend: slide.full | prepend: '/video/full/' | prepend: site.baseurl | prepend: site.url }}" type='video/mp4' />
+			<source src="{{ 'animation.ogv' | prepend: '/' | prepend: slide.full | prepend: '/video/full/' | prepend: site.baseurl | prepend: site.url }}" type='video/ogg' />
+		 	<source src="{{ 'animation.webm' | prepend: '/' | prepend: slide.full | prepend: '/video/full/' | prepend: site.baseurl | prepend: site.url }}" type='video/webm' />
 		</video>
 	</div>
 	{% else %}

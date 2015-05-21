@@ -1,0 +1,57 @@
+.SocialInnovation--Infographic {
+
+	.hidden-xs {
+		display: none;
+	}
+
+}
+
+@media (min-width: $desktop-min) {
+
+	.video .SocialInnovation--Infographic  {
+
+		.hidden-xs {
+			display: block;
+		}
+
+		.visible-xs {
+			display: none;
+		}
+	}
+}
+
+
+.SocialInnovation--Infographic {
+
+	.touch-only {
+		display: none;
+	}
+
+}
+
+.touch .SocialInnovation--Infographic  {
+	.touch-only {
+		display: block;
+	}
+	.no-touch {
+		display: none;
+	}
+}
+
+
+.SocialInnovation--Infographic {
+    .svg {
+        display: none;
+    }
+}
+
+.svg {
+    .SocialInnovation--Infographic {
+        .no-svg {
+            display: none;
+        }
+        .svg {
+            display: inline;
+        }
+    }
+}

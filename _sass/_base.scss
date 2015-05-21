@@ -1,20 +1,4 @@
 
-.SocialInnovation--Infographic {
-    .svg {
-        display: none;
-    }
-}
-
-html.svg {
-    .SocialInnovation--Infographic {
-        .no-svg {
-            display: none;
-        }
-        .svg {
-            display: inline;
-        }
-    }
-}
 
 .SocialInnovation--Infographic {
     video::-webkit-media-controls {
@@ -347,6 +331,8 @@ html.svg {
 
     #SI--Download-Button,
     #SI--Share-Button {
+        outline: 0;
+        text-decoration: none;
         &:hover {
             path {fill: rgb(0, 100, 210); }
         }
