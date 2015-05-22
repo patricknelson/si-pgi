@@ -105,11 +105,10 @@ jQuery(function($) {
 
       var id = vidj.attr('id');
       if (!id) return callback(false);
-      var videoPlayer = videojs(id);
 
-      videoPlayer.play();
+      playVideoJs(id);
 
-      callback(videoPlayer);
+      callback();
 
     }
 
@@ -169,8 +168,7 @@ jQuery(function($) {
       $('.video-js').each(function() {
         var $vidjs = $(this);
         var $id = $vidjs.attr('id');
-
-        videojs($id).play();
+        playVideoJs($id);
         
       });
     }
@@ -183,7 +181,7 @@ jQuery(function($) {
       var id = $('.flex-active-slide .video-js').attr('id');
       if (!$.inArray(id, iePlayed)) return; // no idea...
       iePlayed.push(id);
-      videojs(id).play();
+      playVideoJs(id);
     }
   }
 
@@ -330,8 +328,21 @@ jQuery(function($) {
     $vidjs = $(this).children('.video-js');
     if (!ieOld && $vidjs.hasClass('vjs-has-started')) return;
     $id = $vidjs.attr('id');
-    videojs($id).play();
+    playVideoJs($id);
   });
+
+  function playVideoJs($id, clone) {
+    clone = clone || false;
+
+    if (!clone) {
+      var cloneIndex = $('#' + $id).parents('li').attr('data-loop-index');
+      if (cloneIndex) {
+        var clone = $('.video-js', 'li.clone[data-index="' + ( cloneIndex - 1 ) + '"]');
+        if (clone.length > 0) playVideoJs(clone.attr('id'), true);
+      }
+    }
+    videojs($id).play();
+  }
 
 //  preloadGifs();
 

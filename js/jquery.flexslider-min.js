@@ -923,23 +923,32 @@
           var cnt = slider.container;
 
           // Do first half first
-          for (var i = slider.cloneCount - 1; 0 <= i; i--) {
-          	var halfclones = slider.cloneOffset,
-          		modded = (i > halfclones) ? i % halfclones : i,
-          		length = halfclones - modded - 1,
-          		reverseLength = reverseLength = slider.slides.length - modded;
+          // Trace for 8 clones
+          // 8 => reverseLength = 11 - 8 = 3;
+          // 9 => re
+          var firstSlides = [],
+              lastSlides = [];
 
-          	if ( i < halfclones ) {
-          		slider.container.append(methods.uniqueID(slider.slides.eq(length).clone().addClass('clone')).attr('aria-hidden', 'true').attr('data-index', length));
-          	} else {
-          		slider.container.prepend(methods.uniqueID(slider.slides.eq(reverseLength).clone().addClass('clone')).attr('aria-hidden', 'true').attr('data-index', reverseLength));
-          	}
+          for (var i = slider.cloneOffset; 0 < i; i--) {
+            lastSlides.push( slider.slides.length - i )
+          }
 
-          } 
-          /*
+          for (var i = 0; i < slider.cloneOffset; i++) {
+            firstSlides.push(i);
+          }
 
-          slider.container.append(methods.uniqueID(slider.slides.first().clone().addClass('clone')).attr('aria-hidden', 'true'))
-                          .prepend(methods.uniqueID(slider.slides.last().clone().addClass('clone')).attr('aria-hidden', 'true'));*/
+          lastSlides = lastSlides.reverse();
+
+          for (var x in firstSlides) {
+            var length = firstSlides[x];
+            slider.container.append(methods.uniqueID(slider.slides.eq(length).clone().addClass('clone')).attr('aria-hidden', 'true').attr('data-index', length));
+          }
+
+          for (var x in lastSlides) {
+            var length = lastSlides[x];
+            slider.container.prepend(methods.uniqueID(slider.slides.eq(length).clone().addClass('clone')).attr('aria-hidden', 'true').attr('data-index', length));
+          }
+
         }
         slider.newSlides = $(slider.vars.selector, slider);
 
