@@ -51,17 +51,37 @@
             background-color: #f2f2f2;
             border-style: solid;
         }
+
+        .flex-direction-nav {
+          @media (max-width: $large-min - 1) {
+            width: 100vw;
+            position: absolute;
+            left: calc( (50vw * -1) + 80px);
+            top: 0;
+
+            height: 77px;
+          }
+
+        }
+
+
         .flex-direction-nav .flex-prev {
+          left: 0px !important;
+          @media (min-width: $large-min) {
             left: -460px !important;
+          }
         }
 
         .flex-direction-nav .flex-next {
+          right: 0px !important;
+          @media (min-width: $large-min) {
             right: -460px !important;
+          }
         }
     }
 
     .wrapper {
-        
+
         margin: 0 auto;
 
         @media (min-width: $large-min) {
@@ -75,12 +95,10 @@
         .flex-direction-nav a {
             width: 25px;
             height: 25px;
-            @media (min-width: $large-min) {
-                width: 40px;
-                height: 40px;
-            }
+            width: 40px;
+            height: 40px;
         }
-        
+
         a.flex-next,
         a.flex-prev {
             &:before {
@@ -89,8 +107,8 @@
             background-position: center center;
             background-size: contain;
             background-repeat: no-repeat;
-            
-            opacity: 1 !important; 
+
+            opacity: 1 !important;
 
             &:focus, &:active {
                 outline: 0;
@@ -119,13 +137,13 @@
     #carousel {
         background: none;
         border: 0px;
-        
+
         width: 160px;
         margin: 0 auto;
         overflow: visible;
-    
+
         .slides {
-            
+
             li {
 
                 .inner {
@@ -154,7 +172,7 @@
     #slider {
 
         background: none;
-        @media (min-width: $large-min) {
+        @media (min-width: 760px) {
             width: 760px;
         }
         margin: 0 auto;
@@ -173,15 +191,15 @@
 
             @media (min-width: $large-min) {
                 min-height: 460px;
-            }   
+            }
             .inner-slide {
                 padding-left: 48px;
                 padding-right: 48px;
                 padding-top: 21px;
             }
-            
+
             text-align: center;
-    
+
             img {
                 max-width: 100%;
                 display: block;
@@ -193,7 +211,7 @@
                 align: center;
                 margin: 0 auto;
                 overflow:hidden;
-                
+
                 width: 1px;
                 min-width: 100%;
                 *width: 100%;
@@ -213,7 +231,7 @@
 
             @media (min-width: $large-min) {
                 .videocontent {
-                    height: 414px;  
+                    height: 414px;
                     width: 545px;
                     margin: 0 auto;
                 }
@@ -272,7 +290,7 @@
                     -webkit-transition: all .5s; /* Safari */
                     transition: all .5s;
                 }
-                
+
             }
             .inner-slide {
                 position: relative;
