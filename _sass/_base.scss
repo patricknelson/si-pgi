@@ -80,6 +80,22 @@
         }
     }
 
+    #slider {
+        .flex-direction-nav .flex-prev {
+          left: 0px !important;
+          @media (min-width: $large-min) {
+            left: -10px !important;
+          }
+        }
+
+        .flex-direction-nav .flex-next {
+          right: 0px !important;
+          @media (min-width: $large-min) {
+            right: -10px !important;
+          }
+        }   
+    }
+
     .wrapper {
 
         margin: 0 auto;

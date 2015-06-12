@@ -5,9 +5,10 @@ description: > # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
   Google search results) and in your feed.xml site description.
-baseurl: /assets/infographics/pg # the subpath of your site, e.g. /blog/
-# url: "http://360.ingenuitydesign.com" # the base hostname & protocol for your site
-url: http://ebayinc-uat02.test.trueaction.com
+# baseurl: /assets/infographics/pg # the subpath of your site, e.g. /blog/
+# url: http://ebayinc-uat02.test.trueaction.com
+baseurl: /si
+url: "http://pgi.ebay.staging.ingenuitydesign.com" # the base hostname & protocol for your site
 twitter_username: jekyllrb
 github_username:  jekyll
 
