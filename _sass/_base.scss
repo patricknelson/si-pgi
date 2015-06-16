@@ -366,9 +366,10 @@
     #SI--Download-Button,
     #SI--Share-Button {
         outline: 0;
+        color: rgb(0, 100, 210); 
         text-decoration: none;
         &:hover {
-            path {fill: rgb(0, 100, 210); }
+            path, polygon {fill: rgb(0, 100, 210); }
         }
     }
 
